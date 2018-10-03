@@ -80,7 +80,7 @@
 	<button class="myButton1">HIDE</button>
 	<button class="myButton2">SHOW</button>
 	<button class="myButton3">TOGGLE</button>
-	<button class="myButton4"	>SWITCHER!</button>
+	<button class="myButton4">SWITCHER!</button>
 	<br>
 	<br>
 
@@ -94,6 +94,22 @@
 		<option>Male</option>
 		<option>Female</option>
 	</select>
+
+
+<style>
+form{
+	margin-top: 20px;
+	background-color: yellow;
+	width: 10%;
+	padding: 10px;
+}
+</style>
+<form action="submission.html" method="get" onsubmit="return isChecked()">
+	<p>Please select an option!</p>
+	Yes<input type="radio" name="myOption" value="yes" id="myOptionYes"><br>
+	No<input type="radio" name="myOption" value="no" id="myOptionNo"><br>
+	<input type="submit" value="submit">
+</form>
 
 <br>
 <br>
@@ -133,6 +149,13 @@
 
 </div>
 <p class="article">lorem test</p>
+
+<img src="checkicon.png" alt="check icon" id="checkIcon" onclick="change()">
+<br>
+<br>
+<img src="info.png" alt="info icon" id="infoIcon" onclick="clearInterval(timer)">
+
+
 <footer class="footer">
 	<p>All rights reserved &copy; 2018</p>
 </footer>
@@ -140,6 +163,17 @@
 <script type="text/javascript">
 
 //VANILLA JS
+
+function isChecked(){
+	var yesChecked = document.getElementById('myOptionYes').checked;
+	var noChecked = document.getElementById('myOptionNo').checked;
+	if(yesChecked == false && noChecked == false){
+		alert('PLEASE SELECT AN OPTION FIRST!');
+		return false;
+	}else{
+		return true;
+	}
+}
 
 function clickCounter() {
     if(typeof(Storage) !== "undefined") {
@@ -153,6 +187,36 @@ function clickCounter() {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
     }
 }
+
+
+document.getElementById('checkIcon').style.width = "80px"; 
+var image_tracker = 'on';
+function change(){
+	var image = document.getElementById("checkIcon");
+	if(image_tracker == 'on'){
+		image.src = 'checkiconblk.png';
+		image_tracker = 'off'
+		alert("OFF!");
+	}else{
+		image.src = 'checkicon.png';
+		image_tracker = 'on';
+		alert("ON!");
+	}
+}
+
+document.getElementById('infoIcon').style.width = "80px"; 
+var imageTimer = 'on';
+function changeInTime(){
+	var imageTimed = document.getElementById("infoIcon");
+	if(imageTimer == 'on'){
+		imageTimed.src = 'info.png';
+		imageTimer = 'off'
+	}else{
+		imageTimed.src = 'infoblk.png';
+		imageTimer = 'on';
+	}
+}
+var timer = setInterval('changeInTime()', 500);
 
 
 	var maxPoints= (function () {
