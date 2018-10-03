@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<title>Practice JS on me</title>
+</head>
+
+
+<style>
+/*	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	body{
+		margin: 0;
+		padding: 0;
+		background-color: lightyellow;
+	}
+
+
+	.main-header{
+		padding: 10px;
+		background-color: coral;
+		width: 100%;
+		margin: auto;
+	}
+
+	.nav-bar{
+		background-color: skyblue;
+		width: 100%;
+		margin: auto;
+		position: fixed;
+	}
+
+	.my-list{
+		list-style-type: none;
+		margin: auto;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.list-item{
+		overflow: hidden;
+		text-decoration: none;
+		padding: 14px 16px;
+		float: left;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+
+
+	footer{
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		position: fixed;
+		text-align: center;
+		background-color: grey;
+		padding: 10px;
+	}
+*/
+
+</style>
+
+
+<body>
+<header class="main-header">
+	<h1>TITLE</h1>
+</header>
+	<nav class="nav-bar">
+		<ul class="my-list">
+			<li class="list-item">Home</li>
+			<li class="list-item">About</li>
+			<li class="list-item">Contact</li>
+			<li class="list-item">Services</li>
+		</ul>
+	</nav>
+<div class="wrapper">
+	<button class="myButton1">HIDE</button>
+	<button class="myButton2">SHOW</button>
+	<button class="myButton3">TOGGLE</button>
+	<button class="myButton4"	>SWITCHER!</button>
+	<br>
+	<br>
+
+	<label for="txtbar">Name</label>
+	<input class="txtbar" type="text">
+
+	<br>
+	<br>
+
+	<select class="selector">
+		<option>Male</option>
+		<option>Female</option>
+	</select>
+
+<br>
+<br>
+
+<p>Max Points</p>
+<p id="maxPts">15</p>
+<table>
+	<tr>
+		<th>Status</th>
+		<th>Points</th>
+	</tr>
+	<tr>
+		<td>Attack</td>
+		<td id="attackPts">0</td>
+		<td><button type="button" onclick="addAttack()">+</button></td>
+	</tr>
+	<tr>
+		<td>Defense</td>
+		<td id="defPts">0</td>
+		<td><button type="button" onclick="addDefense()">+</button></td>
+	</tr>
+	<tr>
+		<td>Agility</td>
+		<td id="agiPts">0</td>
+		<td><button type="button" onclick="addAgility()">+</button></td>
+	</tr>
+</table>
+
+<br>
+<p>Total points used.</p>
+<p id="totalPts">0</p>
+
+<p><button onclick="clickCounter()" type="button">Click me!</button></p>
+<div id="result"></div>
+<p>I can store infinite number of clicks!</p>
+<p>All clicks will be stored!</p>
+
+</div>
+<p class="article">lorem test</p>
+<footer class="footer">
+	<p>All rights reserved &copy; 2018</p>
+</footer>
+
+<script type="text/javascript">
+
+//VANILLA JS
+
+function clickCounter() {
+    if(typeof(Storage) !== "undefined") {
+        if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+        } else {
+            localStorage.clickcount = 1;
+        }
+        document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+}
+
+
+	var maxPoints= (function () {
+    	var counter = 15;
+    	return function () {counter --; return counter;}
+
+	})();
+
+	var addAtk = (function () {
+    	var counter = 0;
+    	return function () {counter += 1; return counter;}
+
+	})();
+
+	var addDef = (function () {
+    	var counter = 0;
+    	return function () {counter += 1; return counter;}
+
+	})();
+
+	var addAgi = (function () {
+    	var counter = 0;
+    	return function () {counter += 1; return counter;}
+
+	})();
+
+	var addTotal = (function () {
+    	var counter = 0;
+    	return function () {counter += 1; return counter;}
+
+	})();
+
+function addAttack(){
+    document.getElementById("attackPts").innerHTML = addAtk();
+    document.getElementById('totalPts').innerHTML = addTotal();
+    document.getElementById("maxPts").innerHTML = maxPoints();
+
+	}
+
+function addDefense(){
+    document.getElementById("defPts").innerHTML = addDef();
+    document.getElementById('totalPts').innerHTML = addTotal();
+    document.getElementById("maxPts").innerHTML = maxPoints();
+	}
+	
+function addAgility(){
+    document.getElementById("agiPts").innerHTML = addAgi();
+    document.getElementById('totalPts').innerHTML = addTotal();
+    document.getElementById("maxPts").innerHTML = maxPoints();
+	}
+
+// JQUERY
+
+$('.article').hide();
+
+var mainHeader = document.getElementsByClassName("main-header");
+var btn1 = document.getElementsByClassName("myButton");
+
+$(".myButton1").click(function(){
+	$('.article').hide();
+});
+
+$(".myButton2").click(function(){
+	$('.article').show();
+});
+
+$(".myButton3").click(function(){
+	$('.article').toggle();
+});
+
+
+$('.myButton4').hover(function(e){
+	$('.article').toggle(e);
+});
+
+$('.txtbar').focus(function(){
+	$(this).css('background', 'black');
+	$(this).css('color', 'gold');
+	$(this).css('font-weight', 'bold');
+});
+
+$('.txtbar').blur(function(){
+	$(this).css('background', 'white');
+	$(this).css('color', 'black');
+});
+
+$('.selector').change(function(){
+	alert('changed!');
+});
+
+</script>
+</body>
+</html>
